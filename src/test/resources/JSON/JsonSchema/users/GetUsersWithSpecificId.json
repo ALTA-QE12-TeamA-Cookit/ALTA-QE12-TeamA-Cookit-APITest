@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "profile_picture": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "bio",
+        "role",
+        "profile_picture"
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "data",
+    "message"
+  ]
+}
