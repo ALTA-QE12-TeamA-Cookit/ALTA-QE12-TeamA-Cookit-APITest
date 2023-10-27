@@ -76,7 +76,7 @@ Feature: Recipes
     And Response body message should be "succesfully updating user's recipe"
     And Validate JSON Schema "MessageSchema.json"
 
-  @Negative @TEST
+  @Negative
   Scenario: Update user's recipes with name field is empty
     Given Update recipes with "recipes/UpdateUsersRecipesWithDescriptionNameIsEmpty.json" as req body
     When Send request update users recipes
@@ -102,6 +102,23 @@ Feature: Recipes
 
 
 #DELETE USERS RECIPE
+
+
+  @Positive
+  Scenario: Delete user's recipe with valid id
+    Given Delete users recipe with id
+    When Send request delete users recipes
+    Then Status code 200
+    And Response body message should be "succesfully deleting user's recipe"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
+  Scenario: Delete user's recipe with id isn't exists
+    Given Delete users recipe with "1204916429" as id
+    When Send request delete users recipes
+    Then Status code 400
+    And Response body message should be "forbidden request"
+    And Validate JSON Schema "MessageSchema.json"
 
 
 #GET TIMELINE OF RECIPES

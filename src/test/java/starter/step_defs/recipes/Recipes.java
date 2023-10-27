@@ -56,6 +56,23 @@ public class Recipes {
         RecipesAPI.putUpdateUsersRecipesWithIdInputManually(json, recipe_id);
     }
 
+//DELETE USERS RECIPE
+
+    @Given("Delete users recipe with id")
+    public void deleteUsersRecipeWithId() {
+        RecipesAPI.deleteUsersRecipeWithId();
+    }
+
+    @When("Send request delete users recipes")
+    public void sendRequestDeleteUsersRecipes() {
+        SerenityRest.when().delete(RecipesAPI.DELETE_USERS_RECIPES);
+    }
+
+    @Given("Delete users recipe with {string} as id")
+    public void deleteUsersRecipeWithAsId(String recipe_id) {
+        RecipesAPI.deleteusersRecipeWithIdSetManually(recipe_id);
+    }
+
 
 //GET DETAIL OF RECIPE
 
