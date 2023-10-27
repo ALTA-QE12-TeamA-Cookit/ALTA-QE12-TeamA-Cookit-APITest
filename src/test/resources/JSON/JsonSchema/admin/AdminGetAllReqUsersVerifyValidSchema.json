@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "profile_picture": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            },
+            "approvement": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "profile_picture",
+            "username",
+            "role",
+            "approvement"
+          ]
+        }
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "data",
+    "message"
+  ]
+}
