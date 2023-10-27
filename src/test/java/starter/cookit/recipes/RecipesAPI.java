@@ -3,9 +3,7 @@ package starter.cookit.recipes;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
-import org.junit.Test;
 import starter.cookit.auth.LoginAPI;
-import starter.step_defs.auth.Login;
 import starter.utils.Constant;
 
 public class RecipesAPI {
@@ -97,5 +95,27 @@ public class RecipesAPI {
                 .pathParam("recipe_id", RECIPE_ID);
     }
 
+    @Step("Get list of recipe with query param")
+    public static void getLIstOfRecipeWithQueryParam(String page, String limit, String recipe_id, String user_id, String recipe_name, String type, String status){
+        String TOKEN = LoginAPI.getUserToken();
+
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .queryParam("page", page)
+                .queryParam("limit", limit)
+                .queryParam("id", recipe_id)
+                .queryParam("user_id", user_id)
+                .queryParam("name", recipe_name)
+                .queryParam("type", type)
+                .queryParam("status", status);
+    }
+
+    @Step("Get list of recipe without token")
+    public static void getListOfRecipeWithoutToken(){
+        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
+        SerenityRest.given()
+                .contentType(ContentType.JSON);
+    }
 
 }
