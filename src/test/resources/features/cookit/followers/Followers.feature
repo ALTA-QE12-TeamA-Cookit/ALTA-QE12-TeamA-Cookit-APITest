@@ -32,7 +32,7 @@ Feature: Followers
 
   @Negative
   Scenario: Unfollow an user with id isn't exists
-    Given Unfollow user with id "264"
+    Given Unfollow user with id "264124531"
     When Send request delete unfollow user
     Then Status code 404
     And Response body message should be "invalid user id, data not found"
