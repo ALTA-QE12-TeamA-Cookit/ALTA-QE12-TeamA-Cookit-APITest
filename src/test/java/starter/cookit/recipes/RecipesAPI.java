@@ -1,6 +1,5 @@
 package starter.cookit.recipes;
 
-import com.sun.xml.bind.v2.runtime.reflect.opt.Const;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
@@ -22,6 +21,8 @@ public class RecipesAPI {
 
     public static String PUT_UPDATE_USERS_RECIPES = Constant.BASE_URL + "/recipes/{recipe_id}";
 
+    public static String DELETE_USERS_RECIPES = Constant.BASE_URL + "/recipes/{recipe_id}";
+
     @Step("Get first recipe id")
     public static String getFirstRecipeId(){
         String TOKEN = LoginAPI.getUserToken();
@@ -30,6 +31,7 @@ public class RecipesAPI {
                 .contentType(ContentType.JSON)
                 .queryParam("page", 1)
                 .queryParam("limit", 1)
+                .queryParam("user_id", 221)
                 .queryParam("status", "OpenForSale")
                 .when().get(RecipesAPI.GET_LIST_RECIPES)
                 .then().extract().response().jsonPath().getString("data[0].id");
@@ -147,6 +149,27 @@ public class RecipesAPI {
                 .header("Authorization", "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
                 .body(json)
+                .pathParam("recipe_id", recipe_id);
+    }
+
+    @Step("Delete user's recipe with id")
+    public static void deleteUsersRecipeWithId(){
+        String TOKEN = LoginAPI.getUserToken();
+        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
+
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", RECIPE_ID);
+    }
+
+    @Step("Delete user's recipe with id set manually")
+    public static void deleteusersRecipeWithIdSetManually(String recipe_id){
+        String TOKEN = LoginAPI.getUserToken();
+
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
                 .pathParam("recipe_id", recipe_id);
     }
 
