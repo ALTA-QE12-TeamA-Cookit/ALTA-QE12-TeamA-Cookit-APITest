@@ -1,0 +1,97 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "transaction_details": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "id_seller": {
+                      "type": "integer"
+                    },
+                    "seller_user_username": {
+                      "type": "string"
+                    },
+                    "recipe_name": {
+                      "type": "string"
+                    },
+                    "ingredient_name": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "integer"
+                    },
+                    "quantity": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "id_seller",
+                    "seller_user_username",
+                    "recipe_name",
+                    "ingredient_name",
+                    "price",
+                    "quantity"
+                  ]
+                }
+              ]
+            },
+            "customer_id": {
+              "type": "integer"
+            },
+            "status": {
+              "type": "string"
+            },
+            "payment_method": {
+              "type": "string"
+            },
+            "shipping_fee": {
+              "type": "integer"
+            },
+            "shipping_method": {
+              "type": "string"
+            },
+            "total_price": {
+              "type": "integer"
+            },
+            "created_at": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "transaction_details",
+            "customer_id",
+            "status",
+            "payment_method",
+            "shipping_fee",
+            "shipping_method",
+            "total_price",
+            "created_at"
+          ]
+        }
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "data",
+    "message"
+  ]
+}
