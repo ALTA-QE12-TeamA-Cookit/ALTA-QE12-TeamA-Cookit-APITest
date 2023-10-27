@@ -45,4 +45,32 @@ public class Recipes {
     public void getListOfRecipesWithoutToken() {
         RecipesAPI.getListOfRecipeWithoutToken();
     }
+
+    @Given("Get detail of recipes with recipe_id {string}")
+    public void getDetailOfRecipesWithRecipe_idIsnTExists(String recipe_id) {
+        RecipesAPI.getRecipeDetailWithIdIsNotExists(recipe_id);
+    }
+
+
+// GET RECIPE TIMELINE
+
+    @Given("Get list of recipes timeline")
+    public void getListOfRecipesTimeline() {
+        RecipesAPI.getListUsersRecipeTimeline();
+    }
+
+    @When("Send request get list of recipes timeline")
+    public void sendRequestGetListOfRecipesTimeline() {
+        SerenityRest.when().get(RecipesAPI.GET_RECIPES_TIMELINE);
+    }
+
+    @Given("Get list of recipes timeline with {string} as page {string} as limit")
+    public void getListOfRecipesTimelineWithAsPageAsLimit(String page, String limit) {
+        RecipesAPI.getListUsersRecipeTimelineWithQueryParam(page, limit);
+    }
+
+    @Given("Get list of recipes timeline without token")
+    public void getListOfRecipesTimelineWithoutToken() {
+        RecipesAPI.getListUsersRecipeTimelineWithoutToken();
+    }
 }

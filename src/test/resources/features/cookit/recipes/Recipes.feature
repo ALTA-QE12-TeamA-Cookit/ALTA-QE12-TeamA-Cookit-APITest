@@ -2,6 +2,8 @@
 Feature: Recipes
   As a user i want to do something on recipes
 
+#GET LIST RECIPES
+
   @Positive
   Scenario: Get list of recipes
     Given Get list of recipes
@@ -26,8 +28,63 @@ Feature: Recipes
     And Response body message should be "succesfully read list of recipes"
     And Validate JSON Schema "recipes/GetListOfRecipesSchema.json"
 
+
+#GET TIMELINE OF RECIPES
+
+  @Positive
+  Scenario: Get list user's recipe timeline
+    Given Get list of recipes timeline
+    When Send request get list of recipes timeline
+    Then Status code 200
+    And Response body message should be "succesfully read list of recipes"
+    And Validate JSON Schema "recipes/GetListUsersRecipeTimelineSchema.json"
+
+  @Positive
+  Scenario: Get timeline of recipes with all query param
+    Given Get list of recipes timeline with "1" as page "1" as limit
+    When Send request get list of recipes timeline
+    Then Status code 200
+    And Response body message should be "succesfully read list of recipes"
+    And Validate JSON Schema "recipes/GetListUsersRecipeTimelineSchema.json"
+
+  @Negative
+  Scenario: Get timeline of recipes without token
+    Given Get list of recipes timeline without token
+    When Send request get list of recipes timeline
+    Then Status code 401
+    And Response body message should be "missing or malformed jwt"
+    And Validate JSON Schema "MessageSchema.json"
+
+
+
+#GET DETAIL RECIPE
+
   @Positive
   Scenario: Get detail of recipes with recipe id
+    Given Get detail of recipes with recipe id
+    When Send request get detail recipe
+    Then Status code 200
+    And Response body message should be "succesfully read details of recipe"
+    And Validate JSON Schema "recipes/GetDetailOfRecipeWithValidIdSchema.json"
+
+  @Negative
+  Scenario: Get detail of recipes with recipe_id isn't exists
+    Given Get detail of recipes with recipe_id "84182375123"
+    When Send request get detail recipe
+    Then Status code 400
+    And Response body message should be "record not found"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
+  Scenario: Get detail of recipes with recipe_id inputted by alphabet
+    Given Get detail of recipes with recipe_id "asdahdsad"
+    When Send request get detail recipe
+    Then Status code 400
+    And Response body message should be "invaild id param"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
+  Scenario: Get detail of recipes without token
     Given Get detail of recipes with recipe id
     When Send request get detail recipe
     Then Status code 200
