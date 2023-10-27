@@ -6,6 +6,9 @@ import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import starter.cookit.auth.LoginAPI;
 import starter.cookit.recipes.RecipesAPI;
+import starter.utils.Constant;
+
+import java.io.File;
 
 public class Recipes {
 
@@ -20,6 +23,39 @@ public class Recipes {
     public void sendRequestGetListOfRecipes() {
         SerenityRest.when().get(RecipesAPI.GET_LIST_RECIPES);
     }
+
+// CREATE NEW RECIPES
+
+    @Given("Create new recipes with {string} as req body")
+    public void createNewRecipesWithAsReqBody(String pathFile) {
+        File json = new File(Constant.REQ_BODY + pathFile);
+        RecipesAPI.postCreateNewRecipe(json);
+    }
+
+    @When("Send request create new recipes")
+    public void sendRequestCreateNewRecipes() {
+        SerenityRest.when().post(RecipesAPI.POST_CREATE_RECIPE);
+    }
+
+// UPDATE USER'S RECIPES
+
+    @Given("Update recipes with {string} as req body")
+    public void updateRecipesWithAsReqBody(String pathFile) {
+        File json = new File(Constant.REQ_BODY + pathFile);
+        RecipesAPI.putUpdateUsersRecipes(json);
+    }
+
+    @When("Send request update users recipes")
+    public void sendRequestUpdateUsersRecipes() {
+        SerenityRest.when().put(RecipesAPI.PUT_UPDATE_USERS_RECIPES);
+    }
+
+    @Given("Update recipes with {string} as req body and {string}")
+    public void updateRecipesWithAsReqBodyAnd(String pathFile, String recipe_id) {
+        File json = new File(Constant.REQ_BODY + pathFile);
+        RecipesAPI.putUpdateUsersRecipesWithIdInputManually(json, recipe_id);
+    }
+
 
 //GET DETAIL OF RECIPE
 
@@ -44,5 +80,53 @@ public class Recipes {
     @Given("Get list of recipes without token")
     public void getListOfRecipesWithoutToken() {
         RecipesAPI.getListOfRecipeWithoutToken();
+    }
+
+    @Given("Get detail of recipes with recipe_id {string}")
+    public void getDetailOfRecipesWithRecipe_idIsnTExists(String recipe_id) {
+        RecipesAPI.getRecipeDetailWithIdIsNotExists(recipe_id);
+    }
+
+
+// GET RECIPE TIMELINE
+
+    @Given("Get list of recipes timeline")
+    public void getListOfRecipesTimeline() {
+        RecipesAPI.getListUsersRecipeTimeline();
+    }
+
+    @When("Send request get list of recipes timeline")
+    public void sendRequestGetListOfRecipesTimeline() {
+        SerenityRest.when().get(RecipesAPI.GET_RECIPES_TIMELINE);
+    }
+
+    @Given("Get list of recipes timeline with {string} as page {string} as limit")
+    public void getListOfRecipesTimelineWithAsPageAsLimit(String page, String limit) {
+        RecipesAPI.getListUsersRecipeTimelineWithQueryParam(page, limit);
+    }
+
+    @Given("Get list of recipes timeline without token")
+    public void getListOfRecipesTimelineWithoutToken() {
+        RecipesAPI.getListUsersRecipeTimelineWithoutToken();
+    }
+
+    @Given("Get list users recipe trending")
+    public void getListUsersRecipeTrending() {
+        RecipesAPI.getListUsersRecipeTrending();
+    }
+
+    @When("Send request get list users trending")
+    public void sendRequestGetListUsersTrending() {
+        SerenityRest.when().get(RecipesAPI.GET_RECIPE_TRENDING);
+    }
+
+    @Given("Get list of recipes trending with {string} as page {string} as limit")
+    public void getListOfRecipesTrendingWithAsPageAsLimit(String page, String limit) {
+        RecipesAPI.getListUsersRecipeTrendingWithQueryParam(page, limit);
+    }
+
+    @Given("Get list of recipes trending without token")
+    public void getListOfRecipesTrendingWithoutToken() {
+        RecipesAPI.getListUsersRecipeTrendingWithoutToken();
     }
 }
