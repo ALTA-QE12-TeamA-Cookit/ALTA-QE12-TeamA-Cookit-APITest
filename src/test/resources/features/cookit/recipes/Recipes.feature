@@ -29,6 +29,33 @@ Feature: Recipes
     And Validate JSON Schema "recipes/GetListOfRecipesSchema.json"
 
 
+#GET TIMELINE OF RECIPES
+
+  @Positive
+  Scenario: Get list user's recipe timeline
+    Given Get list of recipes timeline
+    When Send request get list of recipes timeline
+    Then Status code 200
+    And Response body message should be "succesfully read list of recipes"
+    And Validate JSON Schema "recipes/GetListUsersRecipeTimelineSchema.json"
+
+  @Positive
+  Scenario: Get timeline of recipes with all query param
+    Given Get list of recipes timeline with "1" as page "1" as limit
+    When Send request get list of recipes timeline
+    Then Status code 200
+    And Response body message should be "succesfully read list of recipes"
+    And Validate JSON Schema "recipes/GetListUsersRecipeTimelineSchema.json"
+
+  @Negative
+  Scenario: Get timeline of recipes without token
+    Given Get list of recipes timeline without token
+    When Send request get list of recipes timeline
+    Then Status code 401
+    And Response body message should be "missing or malformed jwt"
+    And Validate JSON Schema "MessageSchema.json"
+
+
 
 #GET DETAIL RECIPE
 

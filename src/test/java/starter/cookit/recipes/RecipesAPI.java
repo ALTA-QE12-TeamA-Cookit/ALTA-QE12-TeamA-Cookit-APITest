@@ -11,6 +11,8 @@ public class RecipesAPI {
 
     public static String GET_RECIPE_DETAIL = Constant.BASE_URL + "/recipes/{recipe_id}/detail";
 
+    public static String GET_RECIPES_TIMELINE = Constant.BASE_URL + "/users/recipes/timeline";
+
     @Step("Get first recipe id")
     public static String getFirstRecipeId(){
         String TOKEN = LoginAPI.getUserToken();
@@ -126,6 +128,32 @@ public class RecipesAPI {
                 .header("Authorization", "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
                 .pathParam("recipe_id", recipe_id);
+    }
+
+    @Step("Get list user's recipe timeline")
+    public static void getListUsersRecipeTimeline(){
+        String TOKEN = LoginAPI.getUserToken();
+
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON);
+    }
+
+    @Step("Get list user's recipe timeline with query param")
+    public static void getListUsersRecipeTimelineWithQueryParam(String page, String limit){
+        String TOKEN = LoginAPI.getUserToken();
+
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .queryParam("page", page)
+                .queryParam("limit", limit);
+    }
+
+    @Step("Get list user's recipe timeline without token")
+    public static void getListUsersRecipeTimelineWithoutToken(){
+        SerenityRest.given()
+                .contentType(ContentType.JSON);
     }
 
 }
