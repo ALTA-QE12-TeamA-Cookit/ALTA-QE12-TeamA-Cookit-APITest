@@ -84,17 +84,6 @@ public class RecipesAPI {
                 .contentType(ContentType.JSON);
     }
 
-    @Step("Get recipe detail with id")
-    public static void getRecipeDetailWithId(){
-        String TOKEN = LoginAPI.getUserToken();
-        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
-
-        SerenityRest.given()
-                .header("Authorization", "Bearer " + TOKEN)
-                .contentType(ContentType.JSON)
-                .pathParam("recipe_id", RECIPE_ID);
-    }
-
     @Step("Get list of recipe with query param")
     public static void getLIstOfRecipeWithQueryParam(String page, String limit, String recipe_id, String user_id, String recipe_name, String type, String status){
         String TOKEN = LoginAPI.getUserToken();
@@ -116,6 +105,27 @@ public class RecipesAPI {
         String RECIPE_ID = RecipesAPI.getFirstRecipeId();
         SerenityRest.given()
                 .contentType(ContentType.JSON);
+    }
+
+    @Step("Get recipe detail with id")
+    public static void getRecipeDetailWithId(){
+        String TOKEN = LoginAPI.getUserToken();
+        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
+
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", RECIPE_ID);
+    }
+
+    @Step("Get recipe detail with recipe_id isn't exists")
+    public static void getRecipeDetailWithIdIsNotExists(String recipe_id){
+        String TOKEN = LoginAPI.getUserToken();
+
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", recipe_id);
     }
 
 }

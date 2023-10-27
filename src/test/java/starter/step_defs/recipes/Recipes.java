@@ -45,4 +45,9 @@ public class Recipes {
     public void getListOfRecipesWithoutToken() {
         RecipesAPI.getListOfRecipeWithoutToken();
     }
+
+    @Given("Get detail of recipes with recipe_id {string}")
+    public void getDetailOfRecipesWithRecipe_idIsnTExists(String recipe_id) {
+        RecipesAPI.getRecipeDetailWithIdIsNotExists(recipe_id);
+    }
 }
