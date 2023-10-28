@@ -11,4 +11,6 @@ public class Constant {
     public static String REQ_BODY = JSON+"/ReqBody/";
 
     public static String JSON_SCHEMA = JSON+"/JsonSchema/";
+
+    public static String IMAGE_DATA = DIR + "/src/test/resources/images/";
 }

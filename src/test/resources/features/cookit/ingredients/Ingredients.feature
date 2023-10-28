@@ -18,7 +18,7 @@ Feature: Ingredients
     And Response body message should be "invalid input"
     And Validate JSON Schema "MessageSchema.json"
 
-  @Positive @Test1
+  @Positive
   Scenario: Update ingredient with valid recipe_id, valid ingredient_id and valid body
     Given Update ingredient with valid recipe_id, valid ingredient_id and valid "ingredients/UpdateIngredientValidIngredientIdBodySchema.json"
     When Send update ingredient with valid recipe_id, valid ingredient_id and valid body
