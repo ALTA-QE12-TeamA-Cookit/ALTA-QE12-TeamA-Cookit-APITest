@@ -82,3 +82,36 @@ Feature: Ingredients
     Then Status code 200
     And Response body message should be "succesfully delete recipe's ingredient"
     And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
+  Scenario Outline: Delete ingredient with exceed recipe_id and valid ingredient_id
+    Given Delete ingredient with exceed "<recipe_id>" and valid ingredient_id
+    When Send delete ingredient with exceed recipe_id and valid ingredient_id
+    Then Status code 400
+    And Response body message should be "forbidden request"
+    And Validate JSON Schema "MessageSchema.json"
+    Examples:
+      | recipe_id |
+      | 9999      |
+
+  @Negative
+  Scenario Outline: Delete ingredient with valid recipe_id and exceed ingredient_id
+    Given Delete ingredient with valid recipe_id and exceed "<ingredient_id>"
+    When Send delete ingredient with valid recipe_id and exceed ingredient_id
+    Then Status code 400
+    And Response body message should be "forbidden request"
+    And Validate JSON Schema "MessageSchema.json"
+    Examples:
+      | ingredient_id |
+      | 9999          |
+
+  @Negative
+  Scenario Outline: Delete ingredient with alphabet recipe_id and alphabet ingredient_id
+    Given Delete ingredient with alphabet "<recipe_id>" and alphabet "<ingredient_id>"
+    When Send delete ingredient with alphabet recipe_id and alphabet ingredient_id
+    Then Status code 400
+    And Response body message should be "invaild id param"
+    And Validate JSON Schema "MessageSchema.json"
+    Examples:
+      | recipe_id | ingredient_id |
+      | asdf      | asdf          |

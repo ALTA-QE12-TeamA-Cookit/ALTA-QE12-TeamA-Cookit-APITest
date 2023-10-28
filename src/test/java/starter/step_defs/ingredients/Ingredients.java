@@ -115,4 +115,37 @@ public class Ingredients {
     public void sendDeleteIngredientWithValidRecipe_idAndValidIngredient_id() {
         SerenityRest.when().delete(IngredientsAPI.UPDATE_RECIPES_INGREDIENT);
     }
+
+//     Delete ingredient with exceed recipe_id and valid ingredient_id
+    @Given("Delete ingredient with exceed {string} and valid ingredient_id")
+    public void deleteIngredientWithExceedAndValidIngredient_id(String recipeID) {
+        IngredientsAPI.setDeleteIngredientWithExceedRecipeID(recipeID);
+    }
+
+    @When("Send delete ingredient with exceed recipe_id and valid ingredient_id")
+    public void sendDeleteIngredientWithExceedRecipe_idAndValidIngredient_id() {
+        SerenityRest.when().delete(IngredientsAPI.UPDATE_RECIPES_INGREDIENT);
+    }
+
+//     Delete ingredient with valid recipe_id and exceed ingredient_id
+    @Given("Delete ingredient with valid recipe_id and exceed {string}")
+    public void deleteIngredientWithValidRecipe_idAndExceed(String ingredientID) {
+        IngredientsAPI.setDeleteIngredientWithExceedRecipeID(ingredientID);
+    }
+
+    @When("Send delete ingredient with valid recipe_id and exceed ingredient_id")
+    public void sendDeleteIngredientWithValidRecipe_idAndExceedIngredient_id() {
+        SerenityRest.when().delete(IngredientsAPI.UPDATE_RECIPES_INGREDIENT);
+    }
+
+//     Delete ingredient with all invalid param
+    @Given("Delete ingredient with alphabet {string} and alphabet {string}")
+    public void deleteIngredientWithAlphabetAndAlphabet(String recipeID, String ingredientID) {
+        IngredientsAPI.setDeleteIngredientWithAllInvalidParam(recipeID, ingredientID);
+    }
+
+    @When("Send delete ingredient with alphabet recipe_id and alphabet ingredient_id")
+    public void sendDeleteIngredientWithAlphabetRecipe_idAndAlphabetIngredient_id() {
+        SerenityRest.when().delete(IngredientsAPI.UPDATE_RECIPES_INGREDIENT);
+    }
 }

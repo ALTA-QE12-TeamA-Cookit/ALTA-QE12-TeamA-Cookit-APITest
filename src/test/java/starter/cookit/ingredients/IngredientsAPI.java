@@ -66,7 +66,8 @@ public class IngredientsAPI {
     @Step("Update ingredient with exceed recipe_id, valid ingredient_id and valid body")
     public static void setUpdateIngredientExceedRecipeID(String recipeID, File jsonFile) {
         String TOKEN = LoginAPI.getUserToken();
-        String INGREDIENT_ID = RecipesAPI.getIngredientsInRecipeDetail();
+        JsonPath GENERAL = RecipesAPI.getGeneralDataFromThisFunction();
+        String INGREDIENT_ID = GENERAL.getString("data.ingredients[0].id");
         SerenityRest.given()
                 .header("Authorization", "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
@@ -90,12 +91,47 @@ public class IngredientsAPI {
     @Step("Delete ingredient with all valid param")
     public static void setDeleteIngredientWithAllValidParam() {
         String TOKEN = LoginAPI.getUserToken();
-        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
-        String INGREDIENT_ID = RecipesAPI.getIngredientsInRecipeDetail();
+        JsonPath GENERAL = RecipesAPI.getGeneralDataFromThisFunction();
+        String RECIPE_ID = GENERAL.getString("data.id");
+        String INGREDIENT_ID = GENERAL.getString("data.ingredients[0].id");
         SerenityRest.given()
                 .header("Authorization", "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
                 .pathParam("recipe_id", RECIPE_ID)
                 .pathParam("ingredient_id", INGREDIENT_ID);
+    }
+
+    @Step("Delete ingredient with exceed recipe_id and valid ingredient_id")
+    public static void setDeleteIngredientWithExceedRecipeID(String recipeID) {
+        String TOKEN = LoginAPI.getUserToken();
+        JsonPath GENERAL = RecipesAPI.getGeneralDataFromThisFunction();
+        String INGREDIENT_ID = GENERAL.getString("data.ingredients[0].id");
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", recipeID)
+                .pathParam("ingredient_id", INGREDIENT_ID);
+    }
+
+    @Step("Delete ingredient with valid recipe_id and exceed ingredient_id")
+    public static void setDeleteIngredientWithExceedIngredientID(String ingredientID) {
+        String TOKEN = LoginAPI.getUserToken();
+        JsonPath GENERAL = RecipesAPI.getGeneralDataFromThisFunction();
+        String RECIPE_ID = GENERAL.getString("data.id");
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", RECIPE_ID)
+                .pathParam("ingredient_id", ingredientID);
+    }
+
+    @Step("Delete ingredient with all invalid param alphabet")
+    public static void setDeleteIngredientWithAllInvalidParam(String ingredientID, String recipeID) {
+        String TOKEN = LoginAPI.getUserToken();
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", recipeID)
+                .pathParam("ingredient_id", ingredientID);
     }
 }
