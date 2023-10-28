@@ -1,4 +1,4 @@
-@Commentss
+@Comments
 Feature: Comments
   As a user I want to login and do something in this web
 
@@ -63,10 +63,43 @@ Feature: Comments
     And Validate JSON Schema "MessageSchema.json"
 
   @Negative
-  Scenario: Update recipe comment with valid recipe_id and comment_id inputted by
-  alphabet
+  Scenario: Update recipe comment with valid recipe_id and comment_id inputted by alphabet
     Given Update recipe comment with valid recipe_id and "asdf" inputted by alphabet
     When Send update comments with recipe and comment id
     Then Status code 400
     And Response body message should be "invaild id param"
+    And Validate JSON Schema "MessageSchema.json"
+
+# DELETE COMMENT
+
+  @Positive
+  Scenario: Delete recipe comment with valid recipe_id and valid comment_id
+    Given Delete comments with valid recipe_id comment_id
+    When Send delete comments
+    Then Status code 200
+    And Response body message should be "succesfully delete recipe's comment"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
+  Scenario: Delete recipe comment with valid recipe_id and comment_id isn't exists
+    Given Delete comments with valid recipe_id and "1289361924" as comment_id
+    When Send delete comments
+    Then Status code 400
+    And Response body message should be "record not found"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
+  Scenario: Delete recipe comment with valid recipe_id comment_id inputted by alphabet
+    Given Delete comments with valid recipe_id and "aklsdhklasdj" as comment_id
+    When Send delete comments
+    Then Status code 400
+    And Response body message should be "invaild id param"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
+  Scenario: Delete recipe comment with valid recipe_id and valid comment_id without token
+    Given Delete comments with valid recipe_id comment_id without token
+    When Send delete comments
+    Then Status code 401
+    And Response body message should be "missing or malformed jwt"
     And Validate JSON Schema "MessageSchema.json"
