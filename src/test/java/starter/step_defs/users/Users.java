@@ -1,11 +1,73 @@
 package starter.step_defs.users;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
 import starter.cookit.users.UsersAPI;
+import starter.utils.Constant;
+
+import java.io.File;
 
 public class Users {
+
+//GET USERS
+
+    @Given("Get users current profile")
+    public void getUsersCurrentProfile() {UsersAPI.getUsers();
+    }
+    @When("Send request get users current profile")
+    public void sendRequestGetUsersCurrentProfile() {SerenityRest.when().get(UsersAPI.GET_USERS);
+    }
+
+//UPDATE USERS PROFILE
+
+    @Given("Edit current users profile with valid {string}")
+    public void editCurrentUsersProfileWithValid(String pathFile) {
+        File json = new File(Constant.REQ_BODY + pathFile);
+        UsersAPI.setUpdateUsers(json);
+    }
+
+    @When("Send request edit current users profile")
+    public void sendRequestEditCurrentUsersProfile() {
+        SerenityRest.when()
+                .put(UsersAPI.GET_USERS);
+    }
+
+//SEARCH USER BY USERNAME
+    @Given("search user by {string}")
+    public void searchUserBy(String username) {
+        UsersAPI.setGetUserByUsername(username);
+    }
+
+    @When("Send request search by username")
+    public void sendRequestSearchByUsername() {
+        SerenityRest.when().get(UsersAPI.GET_USER_BY_USERNAME);
+    }
+
+//EDIT USER PASSWORD
+    @Given("edit user password with valid {string}")
+    public void editUserPasswordWithValid(String jsonFile) {
+        File json = new File(Constant.REQ_BODY+jsonFile);
+        UsersAPI.setEditUserPassword(json);
+    }
+
+    @When("Send request edit password users")
+    public void sendRequestEditPasswordUsers() {
+        SerenityRest.when().put(UsersAPI.PUT_USER_PASSWORD);
+    }
+
+
+    @Then("Status code should be {string}")
+    public void statusCodeShouldBe(String statCode) {
+        SerenityRest.then().statusCode(Integer.parseInt(statCode));
+    }
+
+//DELETE USER ACCOUNT
+    @When("Send request delete account")
+    public void sendRequestDeleteAccount() {
+        SerenityRest.when().delete(UsersAPI.GET_USERS);
+    }
 
 //GET USER WITH SPECIFIC ID
 
