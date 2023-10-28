@@ -1,6 +1,6 @@
 @Register
 Feature: Register
-  As a user i want to register account and do something in this web
+  As a user i want to register account and do something in this endpoint
 
   @Positive
   Scenario: Register user with all field is valid
