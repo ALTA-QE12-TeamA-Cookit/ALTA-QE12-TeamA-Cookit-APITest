@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "user_role": {
+                  "type": "string"
+                },
+                "profile_picture": {
+                  "type": "string"
+                },
+                "comment": {
+                  "type": "string"
+                },
+                "comment_image": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "username",
+                "user_role",
+                "profile_picture",
+                "comment",
+                "comment_image"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "user_role": {
+                  "type": "string"
+                },
+                "profile_picture": {
+                  "type": "string"
+                },
+                "comment": {
+                  "type": "string"
+                },
+                "comment_image": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "username",
+                "user_role",
+                "profile_picture",
+                "comment",
+                "comment_image"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "user_role": {
+                  "type": "string"
+                },
+                "profile_picture": {
+                  "type": "string"
+                },
+                "comment": {
+                  "type": "string"
+                },
+                "comment_image": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "username",
+                "user_role",
+                "profile_picture",
+                "comment",
+                "comment_image"
+              ]
+            }
+          ]
+        },
+        "total_page": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "comments",
+        "total_page"
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "data",
+    "message"
+  ]
+}
