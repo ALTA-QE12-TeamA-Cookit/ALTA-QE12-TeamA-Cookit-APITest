@@ -130,7 +130,7 @@ public class Ingredients {
 //     Delete ingredient with valid recipe_id and exceed ingredient_id
     @Given("Delete ingredient with valid recipe_id and exceed {string}")
     public void deleteIngredientWithValidRecipe_idAndExceed(String ingredientID) {
-        IngredientsAPI.setDeleteIngredientWithExceedRecipeID(ingredientID);
+        IngredientsAPI.setDeleteIngredientWithExceedIngredientID(ingredientID);
     }
 
     @When("Send delete ingredient with valid recipe_id and exceed ingredient_id")
