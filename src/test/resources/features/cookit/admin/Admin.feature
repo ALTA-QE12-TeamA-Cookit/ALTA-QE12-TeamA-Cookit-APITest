@@ -18,7 +18,7 @@ Feature: Admin
     And Response body message should be "success approve verified user request"
     And Validate JSON Schema "admin/UpdateUsersValidRoleVerifyReqSchema.json"
 
-  @Positive
+  @Negative
   Scenario Outline: Update users role for verify user with exceed user_id and valid body
     Given Update users role for verify user with exceed "<user_id>" and valid body "<reqBody>"
     When Send request update users role for verify user with exceed user_id and valid valid body
@@ -29,7 +29,7 @@ Feature: Admin
       | user_id | reqBody                               |
       | 9999    | admin/UpdateUserRoleValidReqBody.json |
 
-  @Positive
+  @Negative
   Scenario Outline: Update users role for verify user with valid user_id and invalid body
     Given Update users role for verify user with valid user_id and invalid body "<reqBody>"
     When Send request update users role for verify user with valid user_id and invalid body
@@ -40,7 +40,7 @@ Feature: Admin
       | reqBody                                 |
       | admin/UpdateUserRoleInvalidReqBody.json |
 
-  @Positive
+  @Negative
   Scenario Outline: Update users role for verify user with alphabet user_id and invalid body
     Given Update users role for verify user with alphabet "<user_id>" and invalid body "<reqBody>"
     When Send request update users role for verify user with alphabet user_id and invalid body
