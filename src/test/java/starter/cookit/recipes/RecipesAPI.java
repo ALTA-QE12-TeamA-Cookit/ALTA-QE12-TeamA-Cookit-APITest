@@ -3,6 +3,7 @@ package starter.cookit.recipes;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
+import io.restassured.path.json.JsonPath;
 import starter.cookit.auth.LoginAPI;
 import starter.utils.Constant;
 
@@ -35,6 +36,19 @@ public class RecipesAPI {
                 .queryParam("status", "OpenForSale")
                 .when().get(RecipesAPI.GET_LIST_RECIPES)
                 .then().extract().response().jsonPath().getString("data[0].id");
+    }
+
+    @Step("Get general data from this function")
+    public static JsonPath getGeneralDataFromThisFunction(){
+        String TOKEN = LoginAPI.getUserToken();
+        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
+
+        return SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", RECIPE_ID)
+                .when().get(RecipesAPI.GET_RECIPE_DETAIL)
+                .then().extract().response().jsonPath();
     }
 
     @Step("Get steps in recipe detail")

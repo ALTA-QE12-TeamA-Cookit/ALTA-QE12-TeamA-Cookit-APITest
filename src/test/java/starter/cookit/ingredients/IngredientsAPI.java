@@ -1,6 +1,7 @@
 package starter.cookit.ingredients;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 import starter.cookit.auth.LoginAPI;
@@ -50,8 +51,10 @@ public class IngredientsAPI {
     @Step("Update ingredient with valid recipe_id, valid ingredient_id and valid body")
     public static void setUpdateIngredientAllValid(File jsonFile) {
         String TOKEN = LoginAPI.getUserToken();
-        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
-        String INGREDIENT_ID = RecipesAPI.getIngredientsInRecipeDetail();
+        JsonPath GENERAL = RecipesAPI.getGeneralDataFromThisFunction();
+        String RECIPE_ID = GENERAL.getString("data.id");
+        String INGREDIENT_ID = GENERAL.getString("data.ingredients[0].id");
+
         SerenityRest.given()
                 .header("Authorization", "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
