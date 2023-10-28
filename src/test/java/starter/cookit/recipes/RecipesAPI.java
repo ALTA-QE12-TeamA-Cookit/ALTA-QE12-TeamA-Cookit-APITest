@@ -51,58 +51,6 @@ public class RecipesAPI {
                 .then().extract().response().jsonPath();
     }
 
-    @Step("Get steps in recipe detail")
-    public static String getStepsInRecipeDetail(){
-        String TOKEN = LoginAPI.getUserToken();
-        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
-
-        return SerenityRest.given()
-                .header("Authorization", "Bearer " + TOKEN)
-                .contentType(ContentType.JSON)
-                .pathParam("recipe_id", RECIPE_ID)
-                .when().get(RecipesAPI.GET_LIST_RECIPES)
-                .then().extract().response().jsonPath().getString("data.steps[0].id");
-    }
-
-    @Step("Get images in recipe detail")
-    public static String getImagesInRecipeDetail(){
-        String TOKEN = LoginAPI.getUserToken();
-        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
-
-        return SerenityRest.given()
-                .header("Authorization", "Bearer " + TOKEN)
-                .contentType(ContentType.JSON)
-                .pathParam("recipe_id", RECIPE_ID)
-                .when().get(RecipesAPI.GET_LIST_RECIPES)
-                .then().extract().response().jsonPath().getString("data.images[0].id");
-    }
-
-    @Step("Get ingredients in recipe detail")
-    public static String getIngredientsInRecipeDetail(){
-        String TOKEN = LoginAPI.getUserToken();
-        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
-
-        return SerenityRest.given()
-                .header("Authorization", "Bearer " + TOKEN)
-                .contentType(ContentType.JSON)
-                .pathParam("recipe_id", RECIPE_ID)
-                .when().get(RecipesAPI.GET_LIST_RECIPES)
-                .then().extract().response().jsonPath().getString("data.ingredients[0].id");
-    }
-
-    @Step("Get ingredient details in recipe detail")
-    public static String getIngredientDetailsInRecipeDetail(){
-        String TOKEN = LoginAPI.getUserToken();
-        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
-
-        return SerenityRest.given()
-                .header("Authorization", "Bearer " + TOKEN)
-                .contentType(ContentType.JSON)
-                .pathParam("recipe_id", RECIPE_ID)
-                .when().get(RecipesAPI.GET_LIST_RECIPES)
-                .then().extract().response().jsonPath().getString("data.ingredients[0].ingredient_details[0].id");
-    }
-
     @Step("Get list of recipes")
     public static void setGetListOfRecipes(){
         String TOKEN = LoginAPI.getUserToken();
