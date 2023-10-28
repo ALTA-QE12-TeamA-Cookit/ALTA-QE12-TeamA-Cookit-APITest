@@ -2,7 +2,7 @@
 Feature: Image
   As a user I want to do something in this web
 
-  @Positive @Test1
+  @Positive
   Scenario: Insert image into recipe with valid id
     Given Insert image into recipe with "cake.jpg" as file recipe_id as id
     When Send request insert image into recipe
