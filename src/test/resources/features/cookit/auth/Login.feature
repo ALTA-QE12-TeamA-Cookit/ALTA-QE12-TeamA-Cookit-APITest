@@ -1,6 +1,6 @@
 @Login
 Feature: Login
-  As a user i want to login and do something in this web
+  As a user i want to login and do something in this endpoint
 
   @Positive
   Scenario: Login user with registered account and all field is valid

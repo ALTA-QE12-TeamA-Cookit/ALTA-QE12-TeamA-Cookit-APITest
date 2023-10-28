@@ -3,6 +3,7 @@ package starter.cookit.users;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
+import starter.cookit.admin.AdminAPI;
 import starter.cookit.auth.LoginAPI;
 import starter.utils.Constant;
 
@@ -53,12 +54,22 @@ public class UsersAPI {
 
 
     @Step("Edit user password")
-    public static void setEditUserPassword(File json){
+    public static void setEditUserPassword(File json) {
         String TOKEN = LoginAPI.getUserToken();
         SerenityRest.given()
                 .header("Authorization", "Bearer" + TOKEN)
                 .contentType(ContentType.JSON)
                 .body(json);
+    }
+
+    @Step("Get user id by admin")
+    public static String setGetUserIdByAdmin(){
+        String ADMIN_TOKEN = LoginAPI.getAdminToken();
+        return SerenityRest.given().header("Authorization", "Bearer " + ADMIN_TOKEN)
+                .contentType(ContentType.JSON)
+                .when().get(AdminAPI.GET_LIST_VERIFY_USER)
+                .then().extract().response().jsonPath().getString("data[0].id");
+
     }
 
     @Step("Get user by user id")
