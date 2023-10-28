@@ -84,16 +84,15 @@ public class IngredientsAPI {
                 .body(jsonFile);
     }
 
-//    @Step("Update ingredient with blank req body")
-//    public static void setUpdateIngredientBlankReqBody(File jsonFile) {
-//        String TOKEN = LoginAPI.getUserToken();
-//        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
-//        String INGREDIENT_ID = RecipesAPI.getIngredientsInRecipeDetail();
-//        SerenityRest.given()
-//                .header("Authorization", "Bearer " + TOKEN)
-//                .contentType(ContentType.JSON)
-//                .pathParam("recipe_id", RECIPE_ID)
-//                .pathParam("ingredient_id", INGREDIENT_ID)
-//                .body(jsonFile);
-//    }
+    @Step("Delete ingredient with all valid param")
+    public static void setDeleteIngredientWithAllValidParam() {
+        String TOKEN = LoginAPI.getUserToken();
+        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
+        String INGREDIENT_ID = RecipesAPI.getIngredientsInRecipeDetail();
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", RECIPE_ID)
+                .pathParam("ingredient_id", INGREDIENT_ID);
+    }
 }

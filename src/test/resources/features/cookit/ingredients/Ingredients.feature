@@ -28,7 +28,7 @@ Feature: Ingredients
 
   @Negative
   Scenario Outline: Update ingredient with exceed recipe_id, valid ingredient_id and valid body
-    Given Update ingredients with exceed recipe_id "<recipe_id>", valid ingredient_id and valid "<reqBody>"
+    Given Update ingredients with exceed recipe_id "<recipe_id>" valid req body "<reqBody>"
     When Send update ingredient with exceed recipe_id, valid ingredient_id and valid body
     Then Status code 400
     And Response body message should be "forbidden request"
@@ -75,3 +75,10 @@ Feature: Ingredients
       | recipe_id |
       | 9999      |
 
+  @Positive
+  Scenario: Delete ingredient with valid recipe_id and valid ingredient_id
+    Given Delete ingredient with valid recipe_id and valid ingredient_id
+    When Send delete ingredient with valid recipe_id and valid ingredient_id
+    Then Status code 200
+    And Response body message should be "succesfully delete recipe's ingredient"
+    And Validate JSON Schema "MessageSchema.json"
