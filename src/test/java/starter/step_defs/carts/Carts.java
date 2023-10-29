@@ -39,4 +39,26 @@ public class Carts {
         File json = new File(Constant.REQ_BODY + jsonFile);
         CartsAPI.createPostCarts(json);
     }
+
+
+//  Get list carts
+    @Given("Get list cart")
+    public void getListCart() {
+        CartsAPI.getListUsersCarts();
+    }
+
+    @When("Send request get list cart")
+    public void sendRequestGetListCart() {
+        SerenityRest.when().get(CartsAPI.CREATE_NEW_CARTS);
+    }
+
+    @Given("Get list cart with page param path {string}")
+    public void getListCartWithInvalidPath(String pageParam) {
+        CartsAPI.getListUsersCartsExceedPathParam(pageParam);
+    }
+
+    @Given("Get single cart with exceed limit param {string}")
+    public void getSingleCartWithExceedLimitParam(String limitParam) {
+        CartsAPI.getListUsersCartsExceedLimitPathParam(limitParam);
+    }
 }

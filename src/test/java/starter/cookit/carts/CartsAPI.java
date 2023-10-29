@@ -22,5 +22,32 @@ public class CartsAPI {
                             .body(json);
     }
 
+    @Step("Get list new create")
+    public static void getListUsersCarts() {
+        String TOKEN = LoginAPI.getUserToken();
 
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON);
+    }
+
+    @Step("Get list exceed page path param")
+    public static void getListUsersCartsExceedPathParam(String pageParam) {
+        String TOKEN = LoginAPI.getUserToken();
+
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .queryParam("page", pageParam)
+                .contentType(ContentType.JSON);
+    }
+
+    @Step("Get list exceed limit path param")
+    public static void getListUsersCartsExceedLimitPathParam(String limitParam) {
+        String TOKEN = LoginAPI.getUserToken();
+
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .queryParam("limit", limitParam)
+                .contentType(ContentType.JSON);
+    }
 }
