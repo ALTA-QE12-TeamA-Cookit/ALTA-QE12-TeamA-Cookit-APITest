@@ -146,4 +146,20 @@ public class Recipes {
     public void getListOfRecipesTrendingWithoutToken() {
         RecipesAPI.getListUsersRecipeTrendingWithoutToken();
     }
+
+//    Unlike recipe
+    @Given("Unlike recipes with valid recipe_id")
+    public void unlikeRecipesWithValidRecipe_id() {
+        RecipesAPI.setUnlikeAnotherUsersRecipeWithValidID();
+    }
+
+    @When("Send request unlike recipes")
+    public void sendRequestUnlikeRecipes() {
+        SerenityRest.when().delete(RecipesAPI.UNLIKE_USERS_RECIPE);
+    }
+
+    @Given("Unlike recipes with exceed {string}")
+    public void unlikeRecipesWithExceed(String recipeID) {
+        RecipesAPI.setUnlikeAnotherUsersRecipeWithExceedRecipeID(recipeID);
+    }
 }
