@@ -213,7 +213,7 @@ Feature: Recipes
     And Validate JSON Schema "recipes/GetDetailOfRecipeWithValidIdSchema.json"
 
 # Like Recipe
-  @Positive @test
+  @Positive 
   Scenario: Likes user recipes with valid param
     Given Like users recipe with recipe_id as parameter
     When Send request like recipes
@@ -221,7 +221,7 @@ Feature: Recipes
     And Response body message should be "succesfully like user's recipe"
     And Validate JSON Schema "MessageSchema.json"
 
-  @Negative @test
+  @Negative 
   Scenario: likes user recipes with uncreated param
     Given Like users recipe with uncreated "575600"
     When Send request like recipes
