@@ -47,7 +47,7 @@ public class UsersAPI {
     public static void setGetUserByUsername(String username){
         String TOKEN = LoginAPI.getUserToken();
         SerenityRest.given()
-                .header("Authorization", "Bearer" + TOKEN)
+                .header("Authorization", "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
                 .queryParam("q", username);
     }
@@ -57,7 +57,7 @@ public class UsersAPI {
     public static void setEditUserPassword(File json) {
         String TOKEN = LoginAPI.getUserToken();
         SerenityRest.given()
-                .header("Authorization", "Bearer" + TOKEN)
+                .header("Authorization", "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
                 .body(json);
     }

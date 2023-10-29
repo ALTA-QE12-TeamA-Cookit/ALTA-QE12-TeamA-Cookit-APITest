@@ -46,7 +46,7 @@ public class Users {
     }
 
 //EDIT USER PASSWORD
-    @Given("edit user password with valid {string}")
+    @Given("edit user password with {string}")
     public void editUserPasswordWithValid(String jsonFile) {
         File json = new File(Constant.REQ_BODY+jsonFile);
         UsersAPI.setEditUserPassword(json);
@@ -58,12 +58,13 @@ public class Users {
     }
 
 
-    @Then("Status code should be {string}")
-    public void statusCodeShouldBe(String statCode) {
-        SerenityRest.then().statusCode(Integer.parseInt(statCode));
+//DELETE USER ACCOUNT
+    @Given("delete user account")
+    public void deleteUserAccount() {
+        UsersAPI.getUsers();
+
     }
 
-//DELETE USER ACCOUNT
     @When("Send request delete account")
     public void sendRequestDeleteAccount() {
         SerenityRest.when().delete(UsersAPI.GET_USERS);
@@ -131,4 +132,5 @@ public class Users {
     public void sendRequestPostUpgradeAccountToAdmin() {
         SerenityRest.when().post(UsersAPI.POST_REQUEST_UPGRADE_ACCOUNT);
     }
+
 }
