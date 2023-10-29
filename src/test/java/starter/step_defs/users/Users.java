@@ -1,7 +1,6 @@
 package starter.step_defs.users;
 
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
 import starter.cookit.users.UsersAPI;
