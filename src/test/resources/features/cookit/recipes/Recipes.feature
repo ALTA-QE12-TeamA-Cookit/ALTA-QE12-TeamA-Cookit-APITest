@@ -211,3 +211,22 @@ Feature: Recipes
     Then Status code 200
     And Response body message should be "succesfully read details of recipe"
     And Validate JSON Schema "recipes/GetDetailOfRecipeWithValidIdSchema.json"
+
+
+#    Unlike Recipe
+
+  @Positive
+  Scenario: Unlike recipes with valid recipe_id
+    Given Unlike recipes with valid recipe_id
+    When Send request unlike recipes
+    Then Status code 200
+    And Response body message should be "succesfully unlike user's recipe"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
+  Scenario: Unlike recipes with exceed recipe_id
+    Given Unlike recipes with exceed "999999"
+    When Send request unlike recipes
+    Then Status code 200
+    And Response body message should be "record not found"
+    And Validate JSON Schema "MessageSchema.json"
