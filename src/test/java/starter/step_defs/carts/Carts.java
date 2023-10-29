@@ -61,4 +61,26 @@ public class Carts {
     public void getSingleCartWithExceedLimitParam(String limitParam) {
         CartsAPI.getListUsersCartsExceedLimitPathParam(limitParam);
     }
+
+
+    @Given("Update user's cart with {int} as param and {string} as reqBody")
+    public void updateUserSCart(int cart_id, String jsonFile) {
+        File json = new File (Constant.REQ_BODY + jsonFile);
+        CartsAPI.updateUserCart(cart_id, json);
+    }
+    @When("Send update user's cart")
+    public void sendUpdateUserSCart() {
+        SerenityRest.when().put(CartsAPI.UPDATE_CART_USER);
+    }
+
+
+    @Given("Delete users cart valid param {string}")
+    public void deleteUsersCartValidParam(String cart_id) {
+        CartsAPI.deleteUserCart(cart_id);
+    }
+
+    @When("Send Delete users cart with valid param")
+    public void sendDeleteUsersCartWithValidParam() {
+        SerenityRest.when().delete(CartsAPI.UPDATE_CART_USER);
+    }
 }

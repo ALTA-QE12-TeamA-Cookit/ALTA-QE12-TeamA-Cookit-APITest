@@ -2,9 +2,7 @@ package starter.step_defs.recipes;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
-import starter.cookit.auth.LoginAPI;
 import starter.cookit.recipes.RecipesAPI;
 import starter.utils.Constant;
 
@@ -145,6 +143,24 @@ public class Recipes {
     @Given("Get list of recipes trending without token")
     public void getListOfRecipesTrendingWithoutToken() {
         RecipesAPI.getListUsersRecipeTrendingWithoutToken();
+    }
+
+//    Like recipe
+
+    @Given("Like users recipe with recipe_id as parameter")
+    public void likeUsersRecipeWithAsParameter() {
+        RecipesAPI.setLikeUsersRecipe();
+    }
+
+    @When("Send request like recipes")
+    public void sendRequestLikeRecipes() {
+        SerenityRest.when().post(RecipesAPI.LIKE_USERS_RECIPE);
+    }
+
+
+    @Given("Like users recipe with uncreated {string}")
+    public void likeUsersRecipeWithUncreated(String recipeId) {
+        RecipesAPI.setLikeUsersRecipeWithUncreated(recipeId);
     }
 
 //    Unlike recipe

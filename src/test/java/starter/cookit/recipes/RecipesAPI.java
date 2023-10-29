@@ -24,6 +24,7 @@ public class RecipesAPI {
 
     public static String DELETE_USERS_RECIPES = Constant.BASE_URL + "/recipes/{recipe_id}";
 
+    public static String LIKE_USERS_RECIPE = Constant.BASE_URL + "/recipes/{recipe_id}/like";
     public static String UNLIKE_USERS_RECIPE = Constant.BASE_URL + "/recipes/{recipe_id}/unlike";
 
     @Step("Get first recipe id")
@@ -210,6 +211,25 @@ public class RecipesAPI {
                 .contentType(ContentType.JSON);
     }
 
+// LIKE RECIPE
+    @Step("like recipe users")
+    public static void setLikeUsersRecipe(){
+        String TOKEN =LoginAPI.getUserToken();
+        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", RECIPE_ID);
+    }
+
+    @Step("Like users recipe with uncreate")
+    public static void setLikeUsersRecipeWithUncreated(String recipeId) {
+        String TOKEN = LoginAPI.getUserToken();
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("recipe_id", recipeId);
+    }
 //    UNLIKE RECIPE BY RECIPE ID
     @Step("Unlike users recipe by recipe ID")
     public static void setUnlikeAnotherUsersRecipeWithValidID() {
