@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "id_seller": {
+          "type": "integer"
+        },
+        "seller_username": {
+          "type": "string"
+        },
+        "recipe_images": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "url_image": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "url_image"
+              ]
+            }
+          ]
+        },
+        "recipe_name": {
+          "type": "string"
+        },
+        "ingredient_id": {
+          "type": "integer"
+        },
+        "ingredient_name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "quantity": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "id_seller",
+        "seller_username",
+        "recipe_images",
+        "recipe_name",
+        "ingredient_id",
+        "ingredient_name",
+        "price",
+        "quantity"
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "data",
+    "message"
+  ]
+}
