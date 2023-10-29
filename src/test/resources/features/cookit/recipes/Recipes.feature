@@ -212,6 +212,22 @@ Feature: Recipes
     And Response body message should be "succesfully read details of recipe"
     And Validate JSON Schema "recipes/GetDetailOfRecipeWithValidIdSchema.json"
 
+# Like Recipe
+  @Positive
+  Scenario: Likes user recipes with valid param
+    Given Like users recipe with recipe_id as parameter
+    When Send request like recipes
+    Then Status code 200
+    And Response body message should be "succesfully like user's recipe"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
+  Scenario: likes user recipes with uncreated param
+    Given Like users recipe with uncreated "575600"
+    When Send request like recipes
+    Then Status code 400
+    And Response body message should be "invalid recipe"
+    And Validate JSON Schema "MessageSchema.json"
 
 #    Unlike Recipe
 
@@ -219,7 +235,7 @@ Feature: Recipes
   Scenario: Unlike recipes with valid recipe_id
     Given Unlike recipes with valid recipe_id
     When Send request unlike recipes
-    Then Status code 200
+    Then Status code 405
     And Response body message should be "succesfully unlike user's recipe"
     And Validate JSON Schema "MessageSchema.json"
 

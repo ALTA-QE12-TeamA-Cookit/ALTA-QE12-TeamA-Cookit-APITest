@@ -69,3 +69,30 @@ Feature: Carts
     Then Status code 400
     And Response body message should be "invalid limit param"
     And Validate JSON Schema "MessageSchema.json"
+
+  # Update user cart
+  @Positive @Negative 
+  Scenario Outline: Update user's cart
+    Given Update user's cart with <cartId> as param and "<reqBody>" as reqBody
+    When Send update user's cart
+    Then Status code <statusCode>
+    And Response body message should be "<message>"
+    And Validate JSON Schema "MessageSchema.json"
+    Examples:
+      | cartId  | statusCode | message                        | reqBody                                         |
+      | 171     | 200        | succesfully update user's cart | carts/UpdateUser'sCartWithValidRequestBody.json |
+      | 9999999 | 400        | forbidden request              | carts/UpdateUser'sCartWithValidRequestBody.json |
+      | 171     | 400        | invalid input                  | carts/UpdateUser'sCartWithEmptyRequestBody.json |
+
+  # Delete cart
+  @Positive 
+  Scenario Outline: Delete cart
+    Given Delete users cart valid param "<param>"
+    When Send Delete users cart with valid param
+    Then Status code <statusCode>
+    And Response body message should be "<message>"
+    And Validate JSON Schema "MessageSchema.json"
+    Examples:
+      | param  | statusCode | message                        |
+      | 999999 | 400        | forbidden request              |
+      | 173    | 200        | succesfully delete user's cart |
