@@ -16,6 +16,8 @@ public class CommentsAPI {
 
     public static String UPDATE_COMMENT_WITH_COMMENT_ID = Constant.BASE_URL + "/recipes/{recipe_id}/comments/{comment_id}";
 
+    public static String DELETE_COMMENT = Constant.BASE_URL + "/recipes/{recipe_id}/comments/{comment_id}";
+
 //    Get comment ID
     @Step("Get comment ID")
     public static String getFirstCommentID() {
@@ -112,5 +114,35 @@ public class CommentsAPI {
                 .pathParam("recipe_id", RECIPE_ID)
                 .multiPart("comment", "ini enak lhooo")
                 .multiPart("image", images);
+    }
+
+    @Step("Delete comment")
+    public static void deleteComment() {
+        String TOKEN = LoginAPI.getUserToken();
+        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
+        String COMMENT_ID = CommentsAPI.getFirstCommentID();
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .pathParam("comment_id", COMMENT_ID)
+                .pathParam("recipe_id", RECIPE_ID);
+    }
+
+    @Step("Delete comment with id input manually")
+    public static void deleteCommentWithIdInputManually(String comment_id) {
+        String TOKEN = LoginAPI.getUserToken();
+        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + TOKEN)
+                .pathParam("comment_id", comment_id)
+                .pathParam("recipe_id", RECIPE_ID);
+    }
+
+    @Step("Delete comment without token")
+    public static void deleteCommentWithoutToken(){
+        String RECIPE_ID = RecipesAPI.getFirstRecipeId();
+        String COMMENT_ID = CommentsAPI.getFirstCommentID();
+        SerenityRest.given()
+                .pathParam("comment_id", COMMENT_ID)
+                .pathParam("recipe_id", RECIPE_ID);
     }
 }

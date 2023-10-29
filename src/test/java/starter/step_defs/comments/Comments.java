@@ -72,4 +72,26 @@ public class Comments {
     public void updateRecipeCommentWithValidRecipe_idAndInputtedByAlphabet(String commentID) {
         CommentsAPI.updateCommentWithExceedCommentID(commentID);
     }
+
+//    Delete comment with alphabet comment ID
+
+    @Given("Delete comments with valid recipe_id comment_id")
+    public void deleteCommentsWithValidRecipe_idComment_id() {
+        CommentsAPI.deleteComment();
+    }
+
+    @When("Send delete comments")
+    public void sendDeleteComments() {
+        SerenityRest.when().delete(CommentsAPI.DELETE_COMMENT);
+    }
+
+    @Given("Delete comments with valid recipe_id and {string} as comment_id")
+    public void deleteCommentsWithValidRecipe_idAndAsComment_id(String comment_id) {
+        CommentsAPI.deleteCommentWithIdInputManually(comment_id);
+    }
+
+    @Given("Delete comments with valid recipe_id comment_id without token")
+    public void deleteCommentsWithValidRecipe_idComment_idWithoutToken() {
+        CommentsAPI.deleteCommentWithoutToken();
+    }
 }
