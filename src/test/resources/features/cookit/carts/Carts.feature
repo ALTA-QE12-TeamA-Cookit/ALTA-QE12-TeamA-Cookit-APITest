@@ -85,7 +85,7 @@ Feature: Carts
       | 171     | 400        | invalid input                  | carts/UpdateUser'sCartWithEmptyRequestBody.json |
 
   # Delete cart
-  @Positive @test
+  @Positive 
   Scenario Outline: Delete cart
     Given Delete users cart valid param "<param>"
     When Send Delete users cart with valid param
