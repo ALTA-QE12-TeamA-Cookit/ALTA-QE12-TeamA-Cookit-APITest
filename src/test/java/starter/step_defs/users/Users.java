@@ -4,8 +4,70 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
 import starter.cookit.users.UsersAPI;
+import starter.utils.Constant;
+
+import java.io.File;
 
 public class Users {
+
+//GET USERS
+
+    @Given("Get users current profile")
+    public void getUsersCurrentProfile() {UsersAPI.getUsers();
+    }
+    @When("Send request get users current profile")
+    public void sendRequestGetUsersCurrentProfile() {SerenityRest.when().get(UsersAPI.GET_USERS);
+    }
+
+//UPDATE USERS PROFILE
+
+    @Given("Edit current users profile with valid {string}")
+    public void editCurrentUsersProfileWithValid(String pathFile) {
+        File json = new File(Constant.REQ_BODY + pathFile);
+        UsersAPI.setUpdateUsers(json);
+    }
+
+    @When("Send request edit current users profile")
+    public void sendRequestEditCurrentUsersProfile() {
+        SerenityRest.when()
+                .put(UsersAPI.GET_USERS);
+    }
+
+//SEARCH USER BY USERNAME
+    @Given("search user by {string}")
+    public void searchUserBy(String username) {
+        UsersAPI.setGetUserByUsername(username);
+    }
+
+    @When("Send request search by username")
+    public void sendRequestSearchByUsername() {
+        SerenityRest.when().get(UsersAPI.GET_USER_BY_USERNAME);
+    }
+
+//EDIT USER PASSWORD
+    @Given("edit user password with {string}")
+    public void editUserPasswordWithValid(String jsonFile) {
+        File json = new File(Constant.REQ_BODY+jsonFile);
+        UsersAPI.setEditUserPassword(json);
+    }
+
+    @When("Send request edit password users")
+    public void sendRequestEditPasswordUsers() {
+        SerenityRest.when().put(UsersAPI.PUT_USER_PASSWORD);
+    }
+
+
+//DELETE USER ACCOUNT
+    @Given("delete user account")
+    public void deleteUserAccount() {
+        UsersAPI.getUsers();
+
+    }
+
+    @When("Send request delete account")
+    public void sendRequestDeleteAccount() {
+        SerenityRest.when().delete(UsersAPI.GET_USERS);
+    }
 
 //GET USER WITH SPECIFIC ID
 
@@ -69,4 +131,5 @@ public class Users {
     public void sendRequestPostUpgradeAccountToAdmin() {
         SerenityRest.when().post(UsersAPI.POST_REQUEST_UPGRADE_ACCOUNT);
     }
+
 }

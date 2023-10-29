@@ -1,6 +1,83 @@
 @Users
   Feature: Users
 
+  #GET USERS
+    @Positive @Userpart1
+    Scenario Outline: Get current users profile
+      Given Get users current profile
+      When Send request get users current profile
+      Then Status code 200
+      And Response body message should be "<message>"
+      And Validate JSON Schema "<JSON Schema>"
+      Examples:
+        | message              | JSON Schema                   |
+        | success show profile | users/GetListUsersSchema.json |
+
+  #PUT UPDATE USERS
+    @Positive @Userpart1
+    Scenario: Update users profile with valid req. body
+      Given Edit current users profile with valid "users/UpdateUsersProfileWithValidReqBody.json"
+      When Send request edit current users profile
+      Then Status code 200
+      And Response body message should be "success update profile"
+      And Validate JSON Schema "MessageSchema.json"
+
+
+    @Negative @Userpart1
+    Scenario Outline:Update users profile with invalid data
+      Given Edit current users profile with valid "<reqBody>"
+      When Send request edit current users profile
+      Then Status code <statusCode>
+      And Response body message should be "<message>"
+      And Validate JSON Schema "<JSON Schema>"
+      Examples:
+        | reqBody                                                  | statusCode | message            | JSON Schema                                                        |
+        | users/UpdateUsersProfileWithoutValueInBodyRequest.json   | 400        | error bind data    | users/UpdateUsersProfileWithoutValueInBodyRequestJsonSchema.json   |
+        | users/UpdateUserProfileWithoutKeyInBodyRequest.json      | 400        | error bind data    | users/UpdateUserProfileWithoutKeyInBodyRequestJsonSchema.json      |
+        | users/UpdateUsersProfileWithEmptyValueInBodyRequest.json | 200        | no data was change | users/UpdateUsersProfileWithEmptyValueInBodyRequestJsonSchema.json |
+
+  #SEARCH USERNAME
+    @Positive @Negative @Userpart1
+    Scenario Outline: Search user by username
+      Given search user by "<username>"
+      When Send request search by username
+      Then Status code <statusCode>
+      And Response body message should be "<message>"
+      And Validate JSON Schema "<JSON Schema>"
+      Examples:
+        | username     | statusCode | JSON Schema                      | message           |
+        | test5        | 200        | users/SearchUsersByUsername.json | success find user |
+        | notavailable | 404        | MessageSchema.json               | data not found    |
+
+  #EDIT USER PASSWORD
+    @Positive @Userpart1
+    Scenario Outline: Edit password users reqBody
+      Given edit user password with "<reqBody>"
+      When Send request edit password users
+      Then Status code <statusCode>
+      And Response body message should be "<message>"
+      And Validate JSON Schema "<JSON Schema>"
+      Examples:
+        | reqBody                                     | statusCode | message                                                                    | JSON Schema        |
+        | users/EditPasswordWithoutKey.json           | 400        | old password, new password and confirmation password field cannot be empty | MessageSchema.json |
+        | users/EditPasswordWithoutValue.json         | 400        | old password, new password and confirmation password field cannot be empty | MessageSchema.json |
+        | users/EditPasswordWithEmptyBodyRequest.json | 400        | old password, new password and confirmation password field cannot be empty | MessageSchema.json |
+        | users/EditPasswordValidBodyRequest.json     | 200        | success update password                                                    | MessageSchema.json |
+
+
+      #DELETE USERS
+    @Positive
+    Scenario Outline: Delete users account
+      Given delete user account
+      When Send request delete account
+      Then Status code 200
+      And Response body message should be "<message>"
+      And Validate JSON Schema "<JSON Schema>"
+      Examples:
+        | message                 | JSON Schema        |
+        | succes delete user data | MessageSchema.json |
+
+
   #GET USER WITH SPECIFIC ID
 
     @Positive
