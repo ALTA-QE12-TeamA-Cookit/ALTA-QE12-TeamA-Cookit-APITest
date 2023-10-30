@@ -83,6 +83,7 @@ Feature: Carts
       | 171     | 200        | succesfully update user's cart | carts/UpdateUser'sCartWithValidRequestBody.json |
       | 9999999 | 400        | forbidden request              | carts/UpdateUser'sCartWithValidRequestBody.json |
       | 171     | 400        | invalid input                  | carts/UpdateUser'sCartWithEmptyRequestBody.json |
+      | 9999999 | 400        | invalid input              | carts/UpdateUser'sCartWithEmptyRequestBody.json |
 
   # Delete cart
   @Positive 
