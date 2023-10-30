@@ -46,6 +46,14 @@ Feature: Steps
     And Validate JSON Schema "MessageSchema.json"
 
   @Negative
+  Scenario: Update recipe steps with valid body and valid recipe_id and step id isn't exists
+    Given Update steps with recipe id and "asdjkhsakdj" as step id and "steps/UpdateRecipeStepsWithValidIdAndValidBody.json" as request body
+    When Send request put update steps
+    Then Status code 400
+    And Response body message should be "forbidden request"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Negative
   Scenario: Update recipe steps with empty string body and valid id
     Given Update steps with recipe id and step id and "steps/UpdateRecipeStepsWithEmptyStringBodyAndValidId.json" as request body
     When Send request put update steps

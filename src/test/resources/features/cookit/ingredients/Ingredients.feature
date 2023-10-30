@@ -50,14 +50,6 @@ Feature: Ingredients
     And Response body message should be "invalid input"
     And Validate JSON Schema "MessageSchema.json"
 
-  @Positive
-  Scenario: Delete ingredient with valid recipe_id
-    Given Delete ingredient with valid recipe_id
-    When Send delete ingredient with valid recipe_id
-    Then Status code 200
-    And Response body message should be "succesfully delete recipe's ingredient"
-    And Validate JSON Schema "MessageSchema.json"
-
   @Negative
   Scenario Outline: Delete ingredient with exceed recipe_id
     Given Delete ingredient with exceed "<recipe_id>"
@@ -68,14 +60,6 @@ Feature: Ingredients
     Examples:
       | recipe_id |
       | 9999      |
-
-  @Positive
-  Scenario: Delete ingredient with valid recipe_id and valid ingredient_id
-    Given Delete ingredient with valid recipe_id and valid ingredient_id
-    When Send delete ingredient with valid recipe_id and valid ingredient_id
-    Then Status code 200
-    And Response body message should be "succesfully delete recipe's ingredient"
-    And Validate JSON Schema "MessageSchema.json"
 
   @Negative
   Scenario Outline: Delete ingredient with exceed recipe_id and valid ingredient_id
@@ -109,3 +93,19 @@ Feature: Ingredients
     Examples:
       | recipe_id | ingredient_id |
       | asdf      | asdf          |
+
+  @Positive
+  Scenario: Delete ingredient with valid recipe_id and valid ingredient_id
+    Given Delete ingredient with valid recipe_id and valid ingredient_id
+    When Send delete ingredient with valid recipe_id and valid ingredient_id
+    Then Status code 200
+    And Response body message should be "succesfully delete recipe's ingredient"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Positive
+  Scenario: Delete ingredient with valid recipe_id
+    Given Delete ingredient with valid recipe_id
+    When Send delete ingredient with valid recipe_id
+    Then Status code 200
+    And Response body message should be "succesfully delete recipe's ingredient"
+    And Validate JSON Schema "MessageSchema.json"

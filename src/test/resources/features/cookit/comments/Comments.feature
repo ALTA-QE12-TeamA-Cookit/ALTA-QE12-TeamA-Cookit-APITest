@@ -72,14 +72,6 @@ Feature: Comments
 
 # DELETE COMMENT
 
-  @Positive
-  Scenario: Delete recipe comment with valid recipe_id and valid comment_id
-    Given Delete comments with valid recipe_id comment_id
-    When Send delete comments
-    Then Status code 200
-    And Response body message should be "succesfully delete recipe's comment"
-    And Validate JSON Schema "MessageSchema.json"
-
   @Negative
   Scenario: Delete recipe comment with valid recipe_id and comment_id isn't exists
     Given Delete comments with valid recipe_id and "1289361924" as comment_id
@@ -102,4 +94,12 @@ Feature: Comments
     When Send delete comments
     Then Status code 401
     And Response body message should be "missing or malformed jwt"
+    And Validate JSON Schema "MessageSchema.json"
+
+  @Positive
+  Scenario: Delete recipe comment with valid recipe_id and valid comment_id
+    Given Delete comments with valid recipe_id comment_id
+    When Send delete comments
+    Then Status code 200
+    And Response body message should be "succesfully delete recipe's comment"
     And Validate JSON Schema "MessageSchema.json"

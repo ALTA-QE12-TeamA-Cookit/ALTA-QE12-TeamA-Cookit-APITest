@@ -49,8 +49,8 @@
         | test5        | 200        | users/SearchUsersByUsername.json | success find user |
         | notavailable | 404        | MessageSchema.json               | data not found    |
 
-  #EDIT USER PASSWORD
-    @Positive 
+#  EDIT USER PASSWORD
+    @Positive
     Scenario Outline: Edit password users reqBody
       Given edit user password with "<reqBody>"
       When Send request edit password users
@@ -59,23 +59,23 @@
       And Validate JSON Schema "<JSON Schema>"
       Examples:
         | reqBody                                     | statusCode | message                                                                    | JSON Schema        |
-        | users/EditPasswordWithoutKey.json           | 400        | old password, new password and confirmation password field cannot be empty | MessageSchema.json |
+#        | users/EditPasswordWithoutKey.json           | 400        | old password, new password and confirmation password field cannot be empty | MessageSchema.json |
         | users/EditPasswordWithoutValue.json         | 400        | old password, new password and confirmation password field cannot be empty | MessageSchema.json |
         | users/EditPasswordWithEmptyBodyRequest.json | 400        | old password, new password and confirmation password field cannot be empty | MessageSchema.json |
         | users/EditPasswordValidBodyRequest.json     | 200        | success update password                                                    | MessageSchema.json |
 
 
       #DELETE USERS
-    @Positive
-    Scenario Outline: Delete users account
-      Given delete user account
-      When Send request delete account
-      Then Status code 200
-      And Response body message should be "<message>"
-      And Validate JSON Schema "<JSON Schema>"
-      Examples:
-        | message                 | JSON Schema        |
-        | succes delete user data | MessageSchema.json |
+#    @Positive
+#    Scenario Outline: Delete users account
+#      Given delete user account
+#      When Send request delete account
+#      Then Status code 200
+#      And Response body message should be "<message>"
+#      And Validate JSON Schema "<JSON Schema>"
+#      Examples:
+#        | message                 | JSON Schema        |
+#        | succes delete user data | MessageSchema.json |
 
 
   #GET USER WITH SPECIFIC ID

@@ -35,7 +35,7 @@ public class RecipesAPI {
                 .contentType(ContentType.JSON)
                 .queryParam("page", 1)
                 .queryParam("limit", 1)
-                .queryParam("user_id", 221)
+                .queryParam("user_id", 294)
                 .queryParam("status", "OpenForSale")
                 .when().get(RecipesAPI.GET_LIST_RECIPES)
                 .then().extract().response().jsonPath().getString("data[0].id");
