@@ -1,0 +1,122 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "following": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "user_role": {
+                  "type": "string"
+                },
+                "profile_picture": {
+                  "type": "string"
+                },
+                "from_user_id": {
+                  "type": "integer"
+                },
+                "to_user_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "username",
+                "user_role",
+                "profile_picture",
+                "from_user_id",
+                "to_user_id"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "user_role": {
+                  "type": "string"
+                },
+                "profile_picture": {
+                  "type": "string"
+                },
+                "from_user_id": {
+                  "type": "integer"
+                },
+                "to_user_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "username",
+                "user_role",
+                "profile_picture",
+                "from_user_id",
+                "to_user_id"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "user_role": {
+                  "type": "string"
+                },
+                "profile_picture": {
+                  "type": "string"
+                },
+                "from_user_id": {
+                  "type": "integer"
+                },
+                "to_user_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "username",
+                "user_role",
+                "profile_picture",
+                "from_user_id",
+                "to_user_id"
+              ]
+            }
+          ]
+        },
+        "total_page": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "following",
+        "total_page"
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "data",
+    "message"
+  ]
+}

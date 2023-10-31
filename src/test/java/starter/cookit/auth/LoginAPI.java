@@ -30,4 +30,13 @@ public class LoginAPI {
                 .body(json);
     }
 
+    @Step("Get admin token")
+    public static String getAdminToken() {
+        File json = new File(Constant.REQ_BODY+"admin/LoginAdmin.json");
+        return SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(json).when().post(POST_LOGIN)
+                .then().extract().response().jsonPath().getString("data.token");
+    }
+
 }

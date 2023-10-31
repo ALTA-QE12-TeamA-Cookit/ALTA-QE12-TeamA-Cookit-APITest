@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "profile_picture": {
+          "type": "string"
+        },
+        "following": {
+          "type": "integer"
+        },
+        "follower": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "bio",
+        "role",
+        "profile_picture",
+        "following",
+        "follower"
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "data",
+    "message"
+  ]
+}

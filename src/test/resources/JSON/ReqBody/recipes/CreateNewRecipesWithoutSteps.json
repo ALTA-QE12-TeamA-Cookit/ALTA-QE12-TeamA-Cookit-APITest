@@ -1,0 +1,24 @@
+{
+  "name" : "TestCreateRecipe",
+  "status" : "OpenForSale",
+  "description" : "TestCreateRecipeDescription",
+  "type" : "Original",
+  "ingredients" : [
+    {
+      "name" : "Original",
+      "price" : 10000,
+      "ingredient_details" : [
+        {
+          "name" : "Daging ayam",
+          "quantity" : 1,
+          "unit" : "kg"
+        },
+        {
+          "name" : "Daging sapi",
+          "quantity" : 1,
+          "unit" : "kg"
+        }
+      ]
+    }
+  ]
+}

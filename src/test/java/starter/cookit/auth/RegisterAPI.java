@@ -10,7 +10,7 @@ import java.io.File;
 public class RegisterAPI {
     public static String POST_REGISTER = Constant.BASE_URL + "/register";
 
-    @Step("Register")
+    @Step("Register user with all field is valid")
     public static void setPostRegister(File json){
         SerenityRest.given()
                 .contentType(ContentType.JSON)
