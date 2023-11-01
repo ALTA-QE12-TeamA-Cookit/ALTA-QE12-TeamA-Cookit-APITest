@@ -3,7 +3,7 @@ Feature: Ingredient Details
   As a user I want to login and do something in this web
 
 #  Create
-  @Positive @Test1
+  @Positive
   Scenario: Insert new ingredient detail with valid recipes_id, valid ingredient_id and valid body
     Given Create ingredient detail with valid recipe_id, valid ingredient_id and valid "ingredient_details/CreateValidIngredientDetailReqBody.json"
     When Send create ingredient detail with valid recipe_id and ingredient_id
